@@ -1,1 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-Black.ttf') format('truetype');
+    font-weight: 900;
+}
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+}
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+}
+@font-face {
+    font-family:'spartan';
+    src: url('./assets/spartan/Spartan-Medium.ttf') format('truetype');
+    font-weight: 500;
+}
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-Regular.ttf') format('truetype');
+    font-weight: 400;
+}
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-Light.ttf') format('truetype');
+    font-weight: 300;
+}
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+}
+@font-face {
+    font-family: 'spartan';
+    src: url('./assets/spartan/Spartan-Thin.ttf') format('truetype');
+    font-weight: 100;
+}
+$bright_voilet: #7C5DFA;
+$light_bright_voilet: #DFE3FA;
+$blue:#9277FF;
+$light-blue:#888EB0;
+$bg-color: #141625;
+$navbg: #1E2139;
+
+*,*::before,*::after{
+    box-sizing: border-box;
+}
+:root{
+    --dark-bg: #141625;
+    --light-bg: #F8F8F8;
+    --heading-dark-color:#0C0E16; 
+     --heading-light-color:#FFFFFF; 
+     --text-dark-color: #DFE3FA;
+     --text-light-color:#7E88C3;
+    
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'spartan',sans-serif;
+    
+}

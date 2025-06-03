@@ -1,0 +1,167 @@
+@import '../../../styles.scss';
+@mixin flex($direction:row,$justify:center){
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+}
+$radius:1.25rem;
+$overlay_color: #9277FF;
+$logoLgsize : 6.4rem;
+$logoMdsize: 5rem;
+$logoSmsize: 4.5rem;
+$logoIconLgSize: 2.5rem;
+$logoIconMdSize: 2rem;
+$logoIconSmSize: 1.75rem;
+$imageBorder: #494E6E;
+$imgLgSize: 2.5rem;
+$imgSmSize:2rem;
+
+.profile{
+    position: fixed;
+    height:100svh;
+    top:0;
+    left: 0;
+    width: 6.4rem;
+    @include flex(column,space-between);
+    background-color: $bg-color;
+    border-bottom-right-radius: 1.25rem;
+    border-top-right-radius: 1.25rem;
+}
+.logo{
+    position: relative;
+    background-color: $bright_voilet;
+    width: $logoLgsize;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+    height: $logoLgsize;
+    display: grid;
+    place-content: center;
+}
+.logoicon{
+    width:$logoIconLgSize;
+    height: $logoIconLgSize;
+}
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: calc($logoLgsize/2);
+    border-bottom-right-radius: $radius;
+    border-top-left-radius:$radius ;
+    background-color: $overlay_color;
+    bottom: 0;
+    opacity: 0.4;
+}
+.sun{
+    cursor:pointer;
+    fill:#858BB2;
+    transition: all 0.2s ease-out;
+    &:hover{
+        fill:$light_bright_voilet;
+    }
+}
+.profileimg{
+    width:$imgLgSize;
+    height: $imgLgSize;
+    border-radius: 50%;
+}
+.end{
+    @include flex(column);
+    gap:0rem;
+    
+    .theme{
+        display: grid;
+        place-items: center;
+        padding-bottom: 1.5rem;
+    }
+    svg{
+        align-self: center;
+     
+    }
+     img{
+        align-self: center;
+    }
+}
+
+.image{
+    max-height: inherit;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+    display: grid;
+    place-content: center;
+    border-top: 2px solid $imageBorder;
+}
+
+
+@media(max-width:770px){
+   .profile{
+    @include flex(row,space-between);
+    align-items: center;
+    right: 0;
+    width:100%;
+    height: 5rem;
+    border-radius: 0rem;
+    .end{
+          @include flex(row);
+          .theme{
+            padding: 0 2rem 0 2rem;
+          }
+    }
+    .logo{
+        width: $logoMdsize;
+        height: $logoMdsize;
+        .logoicon{
+        width: $logoIconMdSize;
+        height: $logoIconMdSize;
+    }
+    }
+    .overlay{
+        height: calc($logoMdsize/2);
+    }
+    .image{
+        padding: 0rem 2rem 0 2rem;
+        border-top: none;
+        border-left: 2px solid $imageBorder ;
+    }
+    .profileimg{
+        width: $imgSmSize;
+        height: $imgSmSize;
+    }
+       .image{
+        padding: 1.5rem 2rem 1.5rem 2rem;
+        //  width:5rem;
+       }}
+
+}
+@media(max-width:375px){
+     .profile{
+        height: 4.5rem;
+        .theme{
+            padding-bottom: 0;
+            padding-right: 1.5rem;
+        }
+        .end{
+                height: -webkit-fill-available;
+        }
+    .logo{
+        width: $logoSmsize;
+        height: $logoSmsize;
+        .logoicon{
+        width: $logoIconSmSize;
+        height: $logoIconSmSize;
+    }
+    }
+    .overlay{
+        height: calc($logoSmsize/2);
+    }
+    
+     }
+     .profileimg{
+        width: $imgSmSize;
+        height: $imgSmSize;
+     }
+    image{
+        // padding: 0rem min(0.5rem,1.5rem) 0rem min(0.5rem,1.5rem);
+        padding: 0rem 1.5rem 0rem 1.5rem;
+        width:3.5rem;
+        }
+        
+}
