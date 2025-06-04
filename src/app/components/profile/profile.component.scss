@@ -18,6 +18,7 @@ $imgSmSize:2rem;
 
 .profile{
     position: fixed;
+    z-index: 1;
     height:100svh;
     top:0;
     left: 0;
@@ -50,9 +51,6 @@ $imgSmSize:2rem;
     background-color: $overlay_color;
     bottom: 0;
     opacity: 0.4;
-}
-svg:last-child{
-    display: none;
 }
 
 .profileimg{

@@ -1,0 +1,23 @@
+<div class="page">
+  <app-header [invoices] = "invoices" style="display: flex;flex-direction: column;gap: 2rem;"></app-header>
+ <div class="end">
+     @if(invoices.length>0){
+    @for(invoice of invoices;track $index){ 
+  <app-invoicedata [invoice]="invoice" style="width:inherit"></app-invoicedata>
+  }
+  }
+  @else {
+    <div class="noinvoice-wrapper">
+        <div class="imgwrapper">
+             <img src="assets/images/illustration-empty.svg" alt="Illustrations">
+        </div>
+           <div>
+        <h3>There is nothing here</h3>
+        <p>Create a new invoice by clicking the 
+        <span>New Invoice</span> button and get started</p>
+            </div>
+    </div>
+  }
+
+ </div>
+</div>

@@ -74,6 +74,7 @@ $mobile: 375px;
     font-size: 20px;
     line-height: 22px;
     letter-spacing: -0.63px;
+    color: var(--heading-color);
 }
 @mixin h31{
     font-family: 'spartan',sans-serif;
@@ -81,6 +82,7 @@ $mobile: 375px;
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.8px;
+     color: var(--heading-color);
 }
 @mixin h32{
     font-family: 'spartan',sans-serif;
@@ -115,7 +117,7 @@ $mobile: 375px;
      --text-color:#{$light-dark-violet};
      --form-outline: #{$grey};
      --inv-bg: #{$white};
-     --dark-form-bg: #{$light-darker-blue};
+     --form-bg: #{$white};
      --filter-card: #{$white};
      
 }
@@ -125,6 +127,7 @@ $mobile: 375px;
        --text-color: #{$light_bright_voilet};
     --inv-bg: #{$light-darker-blue};
     --form-outline: #252945;
+      --form-bg: #{$light-darker-blue};
     --filter-card:#{$light-dark-blue};
 }
 body{
@@ -136,4 +139,5 @@ body{
     flex-direction: row;
     justify-content: center;
     min-height: 100vh;
+   
 }

@@ -1,0 +1,64 @@
+@import '../../../styles.scss';
+@mixin flex($direction,$gap){
+    display: flex;
+    flex-direction: $direction;
+    gap:$gap
+}
+h3{
+    margin: 0;
+    padding: 0;
+}
+.data-wrapper{
+    width: min(10rem,inherit);
+@include flex(row,40px);
+cursor: pointer;
+justify-content: space-between;
+padding-left: 2rem;
+padding-right: 1.5rem;
+align-items: center;
+    background-color: var(--inv-bg);
+    border-radius: 0.5rem;
+    &:hover{
+        border: 1px solid $bright_voilet;
+    }
+    .first{
+        @include flex(row,43px);
+        align-items:center;
+    }
+    .second{
+        @include flex(row,73px);
+        align-items:center;
+    }
+    .invend{
+        @include flex(row,20px);
+        justify-content: center;
+        align-items: center;
+    }
+    .status{
+        width: 104px;
+        height: 40px;
+        padding: 12px 0;
+        border-radius: 6px;
+        background-color: #f4ece2;
+        @include flex(row,0.5rem );
+        justify-content: center;
+        align-items: center;
+    .dot{
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: #FF8F00;
+    }
+   
+ 
+    }
+}
+ .h32{
+        @include h32;
+    }
+    .h31{
+        @include h31;
+    }
+ .paragraph{
+            @include body1;
+        }

@@ -1,0 +1,78 @@
+@import '../../../styles.scss';
+.noinvoice-wrapper{
+    width:15rem;
+    height: 341px;
+    display: flex-;
+    flex-direction: column;
+
+    .imgwrapper{
+        width:inherit;
+        margin: auto;
+        img{
+            width:100%;
+            object-fit:cover;
+        }
+    }
+    div{
+        
+        display: grid;
+        h3,p{
+            margin: 0;padding: 0;
+        }
+        h3{
+            @include h2;
+        }
+        p{
+            @include body1;
+        }
+        span{
+            @include h32;
+           color :var(--text-color)
+        }
+    }
+}
+.end{
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ 
+}
+.page{
+   display: grid;
+   place-content: center;
+   gap: 2rem;
+    width:45.6rem;
+    margin-top:65px;
+}
+@media(max-width:950px){
+    .page{
+        width: 35rem;
+    }
+}
+@media(max-width: $tablet){
+.page{
+      width:90vw;
+}
+}
+
+@media (max-width: 500px){
+.page{
+     width:95vw;
+}
+.noinvoice-wrapper{
+    // margin-top: ; 
+    width: 10rem;
+    height: 14.2rem;
+    h3{
+    font-size: 0.8rem;
+}
+p{
+    font-size: 1rem;
+}
+}
+
+
+}
+
