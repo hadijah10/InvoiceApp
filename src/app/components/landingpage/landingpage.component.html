@@ -1,11 +1,11 @@
 <div class="page">
-  <app-header [invoices] = "invoices"></app-header>
+  <app-header [invoices] = "invoices" style="display: flex;flex-direction: column;gap: 2rem;"></app-header>
  <div class="end">
-     <!-- @if(invoices.length>0){ -->
+     @if(invoices.length>0){
     @for(invoice of invoices;track $index){ 
-  <app-invoicedata [invoice]="invoice"></app-invoicedata>
+  <app-invoicedata [invoice]="invoice" style="width:inherit"></app-invoicedata>
   }
-  <!-- }
+  }
   @else {
     <div class="noinvoice-wrapper">
         <div class="imgwrapper">
@@ -17,7 +17,7 @@
         <span>New Invoice</span> button and get started</p>
             </div>
     </div>
-  } -->
-    <button (click)="TClick()"></button>
+  }
+
  </div>
 </div>

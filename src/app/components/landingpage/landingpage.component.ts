@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { InvoicedataComponent } from '../invoicedata/invoicedata.component';
 import { InvoiceService } from '../../services/invoice.service';
-import { IData } from '../../../assets/model/interfaces/data';
+import { Invoice } from '../../../model/interfaces/data';
 
 @Component({
   selector: 'app-landingpage',
@@ -11,14 +11,12 @@ import { IData } from '../../../assets/model/interfaces/data';
   styleUrl: './landingpage.component.scss',
 })
 export class LandingpageComponent {
-  invoices!: IData[];
+  invoices: Invoice[] = [];
   constructor(private invoice: InvoiceService) {
     this.invoice.getInvoices().subscribe((data) => {
       this.invoices = data
     });
  
   }
-     TClick(){
-      console.log(this.invoices)
-    }
+
 }

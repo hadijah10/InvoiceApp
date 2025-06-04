@@ -4,6 +4,7 @@
     height: 341px;
     display: flex-;
     flex-direction: column;
+
     .imgwrapper{
         width:inherit;
         margin: auto;
@@ -33,6 +34,7 @@
 .end{
     width: inherit;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
  
@@ -40,7 +42,9 @@
 .page{
    display: grid;
    place-content: center;
-    width:min(60rem,45.6rem);
+   gap: 2rem;
+    width:45.6rem;
+    margin-top:65px;
 }
 @media(max-width:950px){
     .page{
@@ -55,10 +59,10 @@
 
 @media (max-width: 500px){
 .page{
-     width:90vw;
+     width:95vw;
 }
 .noinvoice-wrapper{
-    // margin-top: ;
+    // margin-top: ; 
     width: 10rem;
     height: 14.2rem;
     h3{
@@ -68,10 +72,7 @@ p{
     font-size: 1rem;
 }
 }
-// @media(max-width: $tablet){
-//    .page{
-//      width:90vw;
-//    }
-// }
+
 
 }
+
