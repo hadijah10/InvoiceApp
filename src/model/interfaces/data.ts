@@ -1,4 +1,4 @@
-interface IData{
+export interface IData{
     [key: string]:string | number | ISubData | Array<ISubData>;
 }
 
