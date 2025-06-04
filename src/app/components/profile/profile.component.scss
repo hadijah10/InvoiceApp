@@ -23,7 +23,7 @@ $imgSmSize:2rem;
     left: 0;
     width: 6.4rem;
     @include flex(column,space-between);
-    background-color: $bg-color;
+    background-color: #373B53;
     border-bottom-right-radius: 1.25rem;
     border-top-right-radius: 1.25rem;
 }
@@ -51,14 +51,10 @@ $imgSmSize:2rem;
     bottom: 0;
     opacity: 0.4;
 }
-.sun{
-    cursor:pointer;
-    fill:#858BB2;
-    transition: all 0.2s ease-out;
-    &:hover{
-        fill:$light_bright_voilet;
-    }
+svg:last-child{
+    display: none;
 }
+
 .profileimg{
     width:$imgLgSize;
     height: $imgLgSize;
@@ -72,6 +68,15 @@ $imgSmSize:2rem;
         display: grid;
         place-items: center;
         padding-bottom: 1.5rem;
+        .moon,.sun{
+    cursor:pointer;
+    fill:#858BB2;
+    transition: all 0.2s ease-out;
+    &:hover{
+        fill:$grey;
+    }
+
+}
     }
     svg{
         align-self: center;
@@ -89,6 +94,7 @@ $imgSmSize:2rem;
     place-content: center;
     border-top: 2px solid $imageBorder;
 }
+
 
 
 @media(max-width:770px){

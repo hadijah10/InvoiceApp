@@ -45,27 +45,95 @@
     font-weight: 100;
 }
 $bright_voilet: #7C5DFA;
-$light_bright_voilet: #DFE3FA;
-$blue:#9277FF;
-$light-blue:#888EB0;
-$bg-color: #141625;
-$navbg: #1E2139;
+$light_bright_voilet: #9277FF;
+$dark-violet:#888EB0;
+$light-dark-violet:#7E88C3;
+$delete-bg:#EC5757;
+$delete-hover-bg: #FF9797;
+$grey: #DFE3FA;
+$light-grey:#F8F8FB;
+$white: #FFFFFF;
+$dark-blue: #141625;
+$light-dark-blue: #252945;
+$darker-blue: #0C0E16;
+$light-darker-blue: #1E2139;
+$tablet: 770px;
+$mobile: 375px;
+
+@mixin h1{
+   font-family: 'spartan',sans-serif;;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 36px;
+    letter-spacing: -1px;
+    color: var(--heading-color);
+}
+@mixin h2{
+    font-family: 'spartan',sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 22px;
+    letter-spacing: -0.63px;
+}
+@mixin h31{
+    font-family: 'spartan',sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.8px;
+}
+@mixin h32{
+    font-family: 'spartan',sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    color: var(--heading-color);
+}
+@mixin body1{
+    font-family: 'spartan',sans-serif;
+    font-weight:500 ;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25px;
+    color: var(--text-color);
+}
+@mixin body2{
+    font-family: 'spartan',sans-serif;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 18px;
+    letter-spacing: -0.23;
+}
 
 *,*::before,*::after{
     box-sizing: border-box;
 }
 :root{
-    --dark-bg: #141625;
-    --light-bg: #F8F8F8;
-    --heading-dark-color:#0C0E16; 
-     --heading-light-color:#FFFFFF; 
-     --text-dark-color: #DFE3FA;
-     --text-light-color:#7E88C3;
-    
+    --bg: #{$light-grey};
+     --heading-color:#{$darker-blue}; 
+     --text-color:#{$light-dark-violet};
+     --form-outline: #{$grey};
+     --inv-bg: #{$white};
+     --dark-form-bg: #{$light-darker-blue};
+     --filter-card: #{$white};
+     
+}
+.dark-theme{
+      --bg: #{$dark-blue};
+      --heading-color: #{$white} ;
+       --text-color: #{$light_bright_voilet};
+    --inv-bg: #{$light-darker-blue};
+    --form-outline: #252945;
+    --filter-card:#{$light-dark-blue};
 }
 body{
     margin: 0;
     padding: 0;
     font-family: 'spartan',sans-serif;
-    
+    background-color:var(--bg);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    min-height: 100vh;
 }
