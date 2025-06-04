@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent {
-
+  isLight: boolean = true
+ toggleTheme(){
+  document.body.classList.toggle('dark-theme')
+  this.isLight = !this.isLight
+ }
 }

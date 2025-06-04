@@ -23,7 +23,7 @@ $imgSmSize:2rem;
     left: 0;
     width: 6.4rem;
     @include flex(column,space-between);
-    background-color: $bg-color;
+    background-color: #373B53;
     border-bottom-right-radius: 1.25rem;
     border-top-right-radius: 1.25rem;
 }
@@ -51,13 +51,18 @@ $imgSmSize:2rem;
     bottom: 0;
     opacity: 0.4;
 }
-.sun{
+svg:last-child{
+    display: none;
+}
+
+.icons{
     cursor:pointer;
     fill:#858BB2;
     transition: all 0.2s ease-out;
     &:hover{
-        fill:$light_bright_voilet;
+        fill:$grey;
     }
+
 }
 .profileimg{
     width:$imgLgSize;
