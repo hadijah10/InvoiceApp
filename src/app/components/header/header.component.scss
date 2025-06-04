@@ -32,11 +32,71 @@ h2{
     gap: 2.5rem;
    }
    .filter{
+    background-color: transparent;
+    position: relative;
+    padding: 0 ;
      @include flex($direction:row);
      align-items: center;
      gap: 1rem;
+      cursor: pointer;
+     &:hover{
+        img{
+            transform: rotate(-180deg);
+            transition: all 0.2s ease-in-out;
+        }
+        .filteroptions{
+            display: block;
+        }
+    }
+    .filteroptions{
+        display: none;
+        width: 150%;
+        position: absolute;
+        top:3rem;
+        left:-20px;
+        background-color: var(--filter-card);
+        color: var(--heading-color);
+          padding-top: 24px;
+            padding-left: 24px;
+            padding-bottom: 24px;
+        .option{
+            cursor: pointer;
+            display: flex;
+            gap:13px;
+            align-items: center;
+            &:hover{
+                input[type="checkbox"]{
+                     border: 1px solid $bright_voilet;
+                }
+            }
+            &:active{
+                input[type="checked"]{
+                    background-color: $bright_voilet;
+                }
+            }
+        }
+        input[type="checkbox"]{
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            width:1rem;
+            height: 1rem;
+            background-color: var(--form-outline);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 2px;
+        }
+        input[type="checkbox"]::after{
+            content: url("../../../assets/images/icon-check.svg");
+        }
+        input[type="checkbox"]:checked{
+            background-color: $bright_voilet;
+        }
+    }
    }
    .button{
+    border: none;
     // width:150px;
     height: 3rem;
     display: flex;

@@ -55,15 +55,6 @@ svg:last-child{
     display: none;
 }
 
-.icons{
-    cursor:pointer;
-    fill:#858BB2;
-    transition: all 0.2s ease-out;
-    &:hover{
-        fill:$grey;
-    }
-
-}
 .profileimg{
     width:$imgLgSize;
     height: $imgLgSize;
@@ -77,6 +68,15 @@ svg:last-child{
         display: grid;
         place-items: center;
         padding-bottom: 1.5rem;
+        .moon,.sun{
+    cursor:pointer;
+    fill:#858BB2;
+    transition: all 0.2s ease-out;
+    &:hover{
+        fill:$grey;
+    }
+
+}
     }
     svg{
         align-self: center;
@@ -94,6 +94,7 @@ svg:last-child{
     place-content: center;
     border-top: 2px solid $imageBorder;
 }
+
 
 
 @media(max-width:770px){
