@@ -1,0 +1,178 @@
+@import '../../../styles.scss';
+@mixin flex($direction,$gap){
+    display: flex;
+    flex-direction: $direction;
+    gap:$gap;
+}
+a{
+    text-decoration: none;
+}
+
+     .status.pending{
+         background-color: lighten($pending,30%) ;
+       }
+        .status.paid{
+         background-color: lighten($paid,30%) ;
+       }
+       .status.draft{
+        background-color: lighten($draft,30%);
+       }
+         .dot.pending{
+         background-color: $pending ;
+       }
+        .dot.paid{
+         background-color: $paid;
+       }
+       .dot.draft{
+        color: $draft;
+       }
+          .h32.pending{
+         color: $pending !important;
+       }
+        .h32.paid{
+         color: $paid !important;
+       }
+       .h32.draft{
+        color: $draft !important;
+       }
+    
+.inv-wrapper{
+    width: 45.6rem;
+    display: grid;
+    margin-top: 50px;
+    gap:28px;
+    .back{
+    @include h32;
+}
+    p{
+    @include body1;
+}
+a{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+.m_status{
+    background-color: var(--form-bg);
+    padding: 1.5rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+.stat{
+     width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+.lstatus{
+    display: flex;
+    gap:1rem;
+    align-items: center;
+}
+// .status{
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-between;
+//     align-items: center;
+// }
+.buttons{
+    display:flex;
+    gap:0.5rem;
+}
+.buttons.two{
+    display: none;
+}
+}
+.invend{
+        @include flex(row,20px);
+        justify-content: center;
+        align-items: center;
+    
+    .status{
+        width: 104px;
+        height: 40px;
+        padding: 12px 0;
+        border-radius: 6px;
+        @include flex(row,0.5rem );
+        justify-content: center;
+        align-items: center;
+        .status{
+            display: flex;
+        }
+    .dot{
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+
+    }
+    }
+}
+button{
+    border: none;
+    outline: none;
+    padding: 16px 24px;
+    @include body1;
+    border-radius: 24px;
+    color: $white;
+    cursor: pointer;
+    &:focus{
+        border: none;
+        outline: none;
+    }
+    &:hover{
+        color:$light_bright_voilet;
+    }
+}
+.edit{
+    background-color: var(--edit-btn-bg);
+    color: var(--edit-btn-text);
+    &:hover{
+        background-color: $light-grey;
+    }
+}
+.delete{
+    background-color: $delete-bg;
+    &:hover{
+        background-color: $delete-hover-bg;
+    }
+}
+.markpaid{
+    background-color: $dark-violet;
+    &:hover{
+        background-color: $light-dark-violet;
+    }
+}
+.deletemodal{
+    width:480px;
+}
+
+    @media(max-width:950px){
+   .inv-wrapper{
+        
+        width: 35rem;
+    }
+}
+@media(max-width: $tablet){
+.inv-wrapper{
+    margin-top:100px;
+      width:90vw;
+}
+}
+
+@media (max-width: 500px){
+.inv-wrapper{
+    margin-top: 104px;
+     width:95vw;
+     .lstatus{
+        justify-content: space-between;
+    width: inherit;
+     }
+.one{
+    display: none;
+}
+.two{
+    display: block;
+}
+}
+
+}

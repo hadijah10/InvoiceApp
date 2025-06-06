@@ -2,14 +2,55 @@
 @mixin flex($direction,$gap){
     display: flex;
     flex-direction: $direction;
-    gap:$gap
+    gap:$gap;
 }
+
 h3{
     margin: 0;
     padding: 0;
 }
+
+a{
+    display: block;
+    text-decoration: none;
+}
+.hash{
+    color: $bright_voilet;
+}
+
+     .status.pending{
+         background-color: lighten($pending,30%) ;
+       }
+        .status.paid{
+         background-color: lighten($paid,30%) ;
+       }
+       .status.draft{
+        background-color: lighten($draft,30%);
+       }
+         .dot.pending{
+         background-color: $pending ;
+       }
+        .dot.paid{
+         background-color: $paid;
+       }
+       .dot.draft{
+        color: $draft;
+       }
+          .h32.pending{
+         color: $pending ;
+       }
+        .h32.paid{
+         color: $paid;
+       }
+       .h32.draft{
+        color: $draft;
+       }
+    
+    
+
 .data-wrapper{
     width: min(10rem,inherit);
+    text-decoration: none;
 @include flex(row,40px);
 cursor: pointer;
 justify-content: space-between;
@@ -39,18 +80,15 @@ align-items: center;
         height: 40px;
         padding: 12px 0;
         border-radius: 6px;
-        background-color: #f4ece2;
         @include flex(row,0.5rem );
         justify-content: center;
         align-items: center;
+        
     .dot{
         width: 1rem;
         height: 1rem;
         border-radius: 50%;
-        background-color: #FF8F00;
     }
-   
- 
     }
 }
  .h32{
@@ -62,3 +100,21 @@ align-items: center;
  .paragraph{
             @include body1;
         }
+    @media(max-width:500px){
+        .data-wrapper{
+       
+            flex-direction: column;
+            gap: 24px;
+            .second{
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    }
+     .last{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap:40px;
+   }
+  
