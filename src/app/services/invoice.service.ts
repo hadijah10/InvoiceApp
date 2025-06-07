@@ -41,6 +41,11 @@ export class InvoiceService {
     localStorage.setItem(this.storageKey, JSON.stringify(data));
   }
 
+  getInvoiceData(id:string | null): Invoice[]{
+    return this.getInvoicesFromStorage().filter((data) => 
+      data.id == id)
+  }
+
    deleteInvoiceFromStorage(id:string | null): void{
      const invoices = this.getInvoicesFromStorage();
     const updated = invoices.filter(invoice => invoice.id !== id);

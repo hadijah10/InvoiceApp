@@ -21,10 +21,8 @@ constructor(private invservice:InvoiceService){
        this.route.paramMap.subscribe((params) => {
       this.id = params.get('id')})
       
-      //fecthing data from localstorage.
-      const storageData = this.invservice.getInvoicesFromStorage();
-      [this.invoice] = storageData.filter((data) => 
-      data.id == this.id)
+      //fetching data from localstorage.
+      this.invoice = this.invservice.getInvoiceData(this.id)[0]
     
 }
 
