@@ -1,0 +1,60 @@
+@if(invoice){
+    <div class="inv-wrapper">
+        <div>
+            <a routerLink="/invoices">
+                <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
+                <p class="back">Go back</p>
+            </a>
+        </div>
+        <section class="m_status">
+        <div class="stat">
+            <div class="lstatus">
+                <p>Status</p>
+                <div class="invend">
+                    <div class="status" [ngClass]="status()">
+                        <div class="dot" [ngClass]="status()"></div>
+                        <p class="h32" [ngClass]="status()">{{invoice.status | titlecase}}</p>
+                    </div>
+            </div>
+            </div>
+            <div class="buttons one">
+                <a routerLink="/invoices">
+                    <button class="edit" >Edit</button>
+                </a>
+            <a (click)="toggleDelete()">
+                <button class="delete" type="button">Delete</button>
+            </a>
+            <a routerLink="/">
+                <button class="markpaid" (click)="markAsPaid(id)" type="button"> Mark As Paid</button>
+            </a>
+            </div>
+        </div>
+        </section>
+
+        <div class="buttons two">
+            <a routerLink="/invoices">
+                <button class="edit" >Edit</button>
+            </a>
+        <a (click)="toggleDelete()">
+            <button class="delete">Delete</button>
+        </a>
+        <a routerLink="/">
+            <button class="markpaid"> Mark As Paid</button>
+        </a>
+        </div>
+    </div>
+@if(showDelete){
+    <div class="deletemodal">
+    <section>
+        <h1>Confirm Deletion</h1>
+        <p>Are you sure you want to delete invoice #XM9141? This action cannot be undone.</p>
+        <a >
+                <button class="edit" (click)="toggleDelete()">Cancel</button>
+            </a>
+          <a >
+            <button class="delete" (click)="delete(id)">Delete</button>
+        </a>
+    </section>
+</div>
+}
+}

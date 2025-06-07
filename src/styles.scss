@@ -60,6 +60,10 @@ $light-darker-blue: #1E2139;
 $tablet: 770px;
 $mobile: 375px;
 
+$pending: #FF8F00;
+$draft: #373B53;
+$paid:#33D69F;
+
 @mixin h1{
    font-family: 'spartan',sans-serif;;
     font-weight: bold;
@@ -111,6 +115,7 @@ $mobile: 375px;
 *,*::before,*::after{
     box-sizing: border-box;
 }
+
 :root{
     --bg: #{$light-grey};
      --heading-color:#{$darker-blue}; 
@@ -119,16 +124,19 @@ $mobile: 375px;
      --inv-bg: #{$white};
      --form-bg: #{$white};
      --filter-card: #{$white};
-     
+        --edit-btn-bg: #{$grey};
+     --edit-btn-text:#{$light-dark-violet};
 }
 .dark-theme{
       --bg: #{$dark-blue};
       --heading-color: #{$white} ;
        --text-color: #{$light_bright_voilet};
     --inv-bg: #{$light-darker-blue};
-    --form-outline: #252945;
+    --form-outline: #{$light-dark-blue};
       --form-bg: #{$light-darker-blue};
     --filter-card:#{$light-dark-blue};
+     --edit-btn-bg: #{$light-dark-blue};
+     --edit-btn-text:#{$grey};
 }
 body{
     margin: 0;
