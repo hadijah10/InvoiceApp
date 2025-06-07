@@ -10,15 +10,22 @@ import { InvoiceService } from '../../services/invoice.service';
   templateUrl: './invoicedetails.component.html',
   styleUrl: './invoicedetails.component.scss'
 })
-export class InvoicedetailsComponent implements OnInit {
+export class InvoicedetailsComponent  {
   invoice!: Invoice 
   id:string | null =''
   route =inject(ActivatedRoute)
+  router = inject(Router)
   showDelete:boolean = false
 constructor(private invservice:InvoiceService){
- 
-  this.invservice.getInvoices().subscribe((data) => {
-    [this.invoice] = data.filter(d => d.id == this.id)})
+      //setting the id
+       this.route.paramMap.subscribe((params) => {
+      this.id = params.get('id')})
+      
+      //fecthing data from localstorage.
+      const storageData = this.invservice.getInvoicesFromStorage();
+      [this.invoice] = storageData.filter((data) => 
+      data.id == this.id)
+    
 }
 
    status(){
@@ -36,13 +43,18 @@ constructor(private invservice:InvoiceService){
     }
   }
 
-  delete(){
+  toggleDelete(){
     this.showDelete = !this.showDelete;
   }
 
-  ngOnInit(){
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id')
-    })
+  delete(id:string | null){
+    this.invservice.deleteInvoiceFromStorage(id);
+    this.router.navigate([''])
   }
+
+markAsPaid(id:string | null){
+  this.invservice.markAsPaid(id)
+}
+
+ 
 }

@@ -61,7 +61,7 @@ $tablet: 770px;
 $mobile: 375px;
 
 $pending: #FF8F00;
-$draft: #DFE3FA;
+$draft: #373B53;
 $paid:#33D69F;
 
 @mixin h1{
@@ -115,6 +115,7 @@ $paid:#33D69F;
 *,*::before,*::after{
     box-sizing: border-box;
 }
+
 :root{
     --bg: #{$light-grey};
      --heading-color:#{$darker-blue}; 

@@ -13,9 +13,10 @@ import { Invoice } from '../../../model/interfaces/data';
 export class LandingpageComponent {
   invoices: Invoice[] = [];
   constructor(private invoice: InvoiceService) {
-    this.invoice.getInvoices().subscribe((data) => {
-      this.invoices = data
-    });
+    this.invoices = [...this.invoice.getInvoicesFromStorage()]
+    // .subscribe((data) => {
+    //   this.invoices = data
+    // });
  
   }
 

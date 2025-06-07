@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {Invoice} from '../../model/interfaces/data';
+import {EStatus, Invoice} from '../../model/interfaces/data';
 import { tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 
 @Injectable({
@@ -17,18 +18,45 @@ export class InvoiceService {
   getInvoices(): Observable<Invoice[]>{
    return this.http.get<Invoice[]>('assets/model/data/data.json')
   }
-  // loaddata(): Observable<Invoice[]>{
-  //   const storedData = localStorage.getItem(this.storageKey)
-  //   if(storedData){
-  //     return JSON.parse(this.storageKey)
-  //   }
-  //   else{
-  //      // Fetch from JSON file and store in localStorage
-  //     return this.http.get(this.jsonUrl).pipe(
-  //       tap(data => {
-  //         localStorage.setItem(this.storageKey, JSON.stringify(data));
-  //       })
-  //     );
-  //   }
-  // }
+  loaddata(): Observable<Invoice[]>{
+    const storedData = localStorage.getItem(this.storageKey)
+    if(storedData){
+      return of(JSON.parse(storedData) as Invoice[]); 
+    }
+    else{
+       // Fetch from JSON file and store in localStorage
+      return this.http.get<Invoice[]>(this.jsonUrl)
+      .pipe(
+        tap(data => {
+          localStorage.setItem(this.storageKey, JSON.stringify(data));
+        })
+      );
+    }
+  }
+  getInvoicesFromStorage(): Invoice[] {
+    return JSON.parse(localStorage.getItem(this.storageKey) || '[]') as Invoice[];
+  }
+
+  saveInvoicesToStorage(data: Invoice[]): void {
+    localStorage.setItem(this.storageKey, JSON.stringify(data));
+  }
+
+   deleteInvoiceFromStorage(id:string | null): void{
+     const invoices = this.getInvoicesFromStorage();
+    const updated = invoices.filter(invoice => invoice.id !== id);
+    this.saveInvoicesToStorage(updated);
+  }
+
+  markAsPaid(id:string | null){
+    const invoices = this.getInvoicesFromStorage()
+    const updatedInvoices = invoices.map(data => data.id==id? {...data,status: EStatus.paid}: data)
+    this.saveInvoicesToStorage(updatedInvoices)
+  }
+
+
+  clearInvoices(): void {
+    localStorage.removeItem(this.storageKey);
+  }
+
+
 }

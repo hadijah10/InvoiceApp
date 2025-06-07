@@ -6,7 +6,7 @@ export interface Invoice {
   paymentTerms: number;
   clientName: string;
   clientEmail: string;
-  status: 'draft' | 'pending' | 'paid';
+  status: EStatus;
   senderAddress: Address;
   clientAddress: Address;
   items: InvoiceItem[];
@@ -25,4 +25,10 @@ export interface InvoiceItem {
   quantity: number;
   price: number;
   total: number;
+}
+export enum EStatus{
+  draft='draft',
+  pending = 'pending',
+  paid='paid',
+
 }

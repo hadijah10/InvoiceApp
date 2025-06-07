@@ -1,3 +1,4 @@
+@use 'sass:color';
 @import '../../../styles.scss';
 @mixin flex($direction,$gap){
     display: flex;
@@ -18,14 +19,14 @@ a{
     color: $bright_voilet;
 }
 
-     .status.pending{
-         background-color: lighten($pending,30%) ;
+    .status.pending{
+         background-color: color.adjust($pending,$lightness:45%) ;
        }
         .status.paid{
-         background-color: lighten($paid,30%) ;
+         background-color: color.adjust($paid,$lightness:45%) ;
        }
        .status.draft{
-        background-color: lighten($draft,30%);
+        background-color: color.adjust($draft,$lightness:70%) ;
        }
          .dot.pending{
          background-color: $pending ;
@@ -34,7 +35,7 @@ a{
          background-color: $paid;
        }
        .dot.draft{
-        color: $draft;
+        background-color: $draft;
        }
           .h32.pending{
          color: $pending ;
@@ -78,15 +79,15 @@ align-items: center;
     .status{
         width: 104px;
         height: 40px;
-        padding: 12px 0;
+        padding: 12px 1rem;
         border-radius: 6px;
         @include flex(row,0.5rem );
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         
     .dot{
-        width: 1rem;
-        height: 1rem;
+        width: 0.6rem;
+        height: 0.6rem;
         border-radius: 50%;
     }
     }
