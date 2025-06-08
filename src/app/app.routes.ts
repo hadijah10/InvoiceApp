@@ -3,6 +3,9 @@ import { HeaderComponent } from './components/header/header.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { ErrorpageComponent } from './components/errorpage/errorpage.component';
 import { InvoicedetailsComponent } from './components/invoicedetails/invoicedetails.component';
+import { FormComponent } from './components/form/form.component';
+import { NewformComponent } from './components/newform/newform.component';
+import { AppComponent } from './app.component';
 
 export const routes: Routes = [
     {
@@ -13,16 +16,28 @@ export const routes: Routes = [
     {
         path:'invoices',
         title:"Invoice",
-        component: LandingpageComponent
-    },
-    {
-        path:'invoices/:id',
+        component: AppComponent,
+        children: [
+      { path: '', component: LandingpageComponent }, // /invoice
+      { path: 'new', component: NewformComponent }, // /invoice/new
+       {
+        path:':id',
         title: "Invoice Details",
         component: InvoicedetailsComponent
     },
+    ]
+    },
+   
+    {
+        path:'form',
+        title: "404 Page",
+        component: FormComponent
+    }
+    ,
     {
         path:'**',
         title: "404 Page",
         component: ErrorpageComponent
-    }
+    },
+
 ];

@@ -13,6 +13,15 @@ h2{
     align-items: center;
    @include flex($direction:flex);
    justify-content: space-between;
+   a{
+    text-decoration: none;
+   }
+   button{
+    cursor: pointer;
+        &:focus{
+            outline: none;
+        }
+   }
    .title{
     @include flex($direction: column);
    }

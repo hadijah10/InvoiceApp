@@ -1,5 +1,5 @@
 <div class="page">
-  <app-header [invoices] = "invoices"  style="display: flex;flex-direction: column;gap: 2rem;"></app-header>
+  <app-header [invoices] = "invoices" style="display: flex;flex-direction: column;gap: 2rem;"></app-header>
  <div class="end">
      @if(invoices.length>0){
     @for(invoice of invoices;track $index){ 
@@ -19,6 +19,7 @@
     </div>
   }
  </div>
- 
+   
+     <app-form [isNewform]="formtype"  class="appform"></app-form>
 </div>
 

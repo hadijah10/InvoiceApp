@@ -1,0 +1,98 @@
+<section class="form-entry">
+    <form [formGroup]="form" (ngSubmit) ="onSubmit()">
+      <!-- @if(isNewform == true){
+        <h1>New Invoice</h1>
+      }
+      @else {
+        <h1> Edit {{invoice.id}}</h1>
+      } -->
+    <h1>New Invoice</h1>
+  <section formGroupName="senderAddress">
+    <h3>Bill Form</h3>
+    <label for="streetaddress">StreetAdrress</label>
+  <input type="text" id="streetaddress" placeholder="name" formControlName="street">
+  <label for="city">City</label>
+    <input type="text" name="" id="city" placeholder="Streetname" formControlName="city">
+    <label for="postal-code">PostCode</label>
+    <input type="text" placeholder="address" formControlName="postalCode">
+    <label for="scountry">Country</label>
+    <input  placeholder="country" id="scountry" formControlName="country">
+  </section>
+  <div>
+    <label for="cname">Client's Name</label>
+    <input type="text" formControlName="clientName">
+  </div>
+  <div>
+    <label for="cemial">Client's Email</label>
+    <input type="text" formControlName="clientEmail">
+  </div>
+  <section formGroupName="clientAddress">
+    <label for="sstreetaddress">StreetAdrress</label>
+  <input type="text" id="streetaddress" placeholder="name" formControlName="street">
+  <label for="city">City</label>
+    <input type="text" name="" id="city" placeholder="Streetname" formControlName="city">
+    <label for="postal-code">PostCode</label>
+    <input type="text" placeholder="address" formControlName="postalCode">
+    <label for="scountry">Country</label>
+    <input  placeholder="country" id="scountry" formControlName="country">
+  </section>
+  <div>
+    <div>
+      <label for="invoicedate">Invoice Date</label>
+      <input type="date" id="invoicedate" formControlName="createdAt">
+    </div>
+    <div>
+      <label for="paymentterms">Payment Terms</label>
+      <!-- <input type="text" id="paymentterms" formControlName="paymentTerms"> -->
+      <select name="paymenterm" id="paymenterm" formControlName="paymentTerms">
+        @for(option of options;track $index){
+           <option [value]="option.value">{{option.name}}</option>
+        }
+      </select>
+    </div>
+  </div>
+  <div class="description">
+    <label for="projectDescription">Project Description</label>
+    <input type="text" id="projectDescription" placeholder="project description" formControlName="description">
+  </div>
+  <section formArrayName="items">
+    @for (kin of itemFormArray.controls; track $index; let i=$index){
+      <div class="single-item" [formGroupName]="i">
+        <div>
+          <label for="itemname">Item Name</label>
+          <input type="text" id="itemname" formControlName="name" placeholder="item name"/>
+        </div>
+        <div>
+          <label for="itemquant">Qty.</label>
+         <input type="number" id="itemquant" placeholder="quantity" formControlName="quantity">
+        </div>
+        <div>
+          <label for="itemprice">Price</label>
+          <input type="number" id="itemprice" placeholder="price" formControlName="price">
+        </div> 
+         <div>
+          <label for="itemprice">Total</label>
+           <input formControlName="total" placeholder="Total" readonly  />
+        </div> 
+          <button type="button" (click)="deleteItem($index)">
+            <svg width="13" height="16" xmlns="http://www.w3.org/2000/svg"><path d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z" fill="#888EB0" fill-rule="nonzero"/></svg>
+          </button>
+      </div>
+    }
+  </section>
+  <button (click)="addItem()" type="button">Additem</button>
+  <div>
+    <a routerLink="/">
+      <button type="button">Discard</button>
+    </a>
+    <div>
+        <button type="button" (click)="saveAsDraft()">Save as Draft</button>
+     <button type="submit" [disabled]="form.invalid">Save and Send</button>
+    </div>
+  </div>
+ </form>
+ <div class="warningdiv">
+   <p class="warning">{{form.invalid ? '- All fields must be added':''}}</p>
+ <p class="warning">{{form.invalid ? '- Items must be added': ''}}</p>
+ </div>
+</section>
