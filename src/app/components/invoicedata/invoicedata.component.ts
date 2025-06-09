@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component,EventEmitter, Input ,Output} from '@angular/core';
 import { Invoice } from '../../../model/interfaces/data';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { DatePipe,TitleCasePipe} from '@angular/common';
@@ -12,6 +12,7 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class InvoicedataComponent {
   @Input() invoice!: Invoice;
+ 
   status(){
     if(this.invoice.status == 'pending'){
       return 'pending'

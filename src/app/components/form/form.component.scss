@@ -1,0 +1,209 @@
+@import '../../../styles.scss';
+@mixin flex($direction,$gap:0px){
+    display: flex;
+    flex-direction: $direction;
+    gap:$gap;
+}
+
+input.is-invalid{
+    border: 1px solid $delete-bg;
+}
+
+.form-entry{
+    width: 44rem;
+    background-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding: 56px 56px 32px 56px;
+    background-color: var(--form-bg);
+    margin-bottom: 2rem;
+    @include flex(column,2rem);
+   
+      .back{
+    @include h32;
+}
+.goback{
+    display: none;
+    cursor: pointer;
+    align-items: center;
+    gap: 1.25rem;
+}
+    form{
+        @include flex(column,2rem);
+        .billTo,.billFrom{
+            @include flex(column,24px);
+        }
+        h1{
+            @include h31;
+        }
+        h3{
+            @include h32;
+            color: $bright_voilet;
+        }
+        .clientaddress{
+            @include flex(column,24px);
+        }
+        .adddetails,.postdetails,.datenterms,.itemsclass{
+            @include flex(row);
+            justify-content: space-between;
+            align-items: center;
+        }
+        .single-item{
+            @include flex(row);
+            justify-content: space-between;
+        }
+    }
+    label,input{
+        display: block;
+    }
+    label{
+        margin-bottom: 10px;
+       @include body1;
+    }
+    input,select{
+        border: 1px solid var(--form-outline);
+        background-color: var(--form-input-bg);
+        padding: 1rem;
+        border-radius: 4px;
+        width:100%;
+         @include h32;
+        &:focus{
+            outline: none;
+            border: 1px solid $bright_voilet;
+        }
+    }
+    .single-item{
+        @include flex(row);
+        gap:0.5rem;
+        .itemname{
+            flex:0.4;
+        }
+         .itemquantity{
+            flex:0.1;
+        }
+         .itemprice{
+            flex:0.2;
+        };
+         .total{
+            flex:0.2;
+        }
+
+    }
+
+    .trash{
+        background-color: transparent;
+        border: none;
+        flex:0.1;
+        &:focus{
+            outline: none;
+        }
+    }
+    .bin{
+        cursor: pointer;
+        &:hover{
+            fill:$delete-bg;
+        }
+    }
+    .location{
+        @include flex(row);
+        justify-content: space-between;
+    }
+    select{
+        cursor: pointer;
+        option:hover{
+            background-color: transparent;
+            color: $bright_voilet;
+        }
+    }
+    .additem{
+        border-radius: 24px;
+        padding: 1rem;
+        border: none;
+        cursor: pointer;
+        @include h32;
+        @include flex(row);
+        align-items: center;
+        justify-content: center;
+        background-color: var(--edit-btn-bg);
+        color: var(--edit-btn-text);
+        &:hover{
+            background-color: $grey;
+         
+        }
+        &:focus{
+            outline: none;
+        }
+        .add{
+            fill:var(--edit-btn-text)
+        }
+    }
+    .warningdiv{
+        @include semibold;
+        color: $delete-bg;
+    }
+    a{
+        text-decoration: none;
+    }
+    .controlbuttons{
+        @include flex(row);
+        justify-content: space-between;
+        .save{
+            @include flex(row,1rem);
+        }
+        button{
+            padding: 1rem 1.5rem;
+            border-radius: 24px;
+        background-color: none;
+        border: none;
+         cursor: pointer;
+        &:focus{
+            outline: none;
+        }
+        }
+        .discard{
+            background-color: var(--edit-btn-bg);
+            @include h32;
+            color: var(--edit-btn-text) !important; 
+        }
+        .draftbtn{
+            background-color: $light-dark-blue ;
+            color: var(--save-btn-text);
+            &:hover{
+                background-color: var(--save-btn-hover-bg);
+            }
+        }
+        .savesend{
+            background-color: $light_bright_voilet;
+            color: $white;
+        }
+    }
+}
+.appform{
+        margin-left: 103px;
+    }
+h1,h3{
+    margin: 0;
+}
+@media(max-width:$tablet){
+     .appform{
+        margin-left: 0px;
+    }
+    .form-entry{
+        width:min(98%,600px);
+        padding: 32px 20px 48px 20px;
+    }
+}
+@media(max-width:500px){
+    .form-entry{
+        .goback{
+         display: flex;
+    }
+    .controlbuttons{
+        button{
+        font-size: 0.6rem;
+            padding: 0.6rem 0.7rem;
+    }
+    }
+    }
+    
+}
