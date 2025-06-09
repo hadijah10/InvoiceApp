@@ -150,6 +150,9 @@ input.is-invalid{
         .save{
             @include flex(row,1rem);
         }
+        .manage{
+            justify-content: end;
+        }
         button{
             padding: 1rem 1.5rem;
             border-radius: 24px;

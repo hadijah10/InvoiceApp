@@ -1,9 +1,10 @@
-import { Component,EventEmitter,inject, Output,input } from '@angular/core';
+import { Component,EventEmitter,inject, Output,input ,Input} from '@angular/core';
 import { ReactiveFormsModule,Validators,FormBuilder,FormArray,FormControl,FormGroup, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EStatus } from '../../../model/interfaces/data';
-import { Router,RouterLink } from '@angular/router';
+import { ActivatedRoute, Router,RouterLink } from '@angular/router';
 import { InvoiceService } from '../../services/invoice.service';
+import { Invoice } from '../../../model/interfaces/data';
 
 @Component({
   selector: 'app-form',
@@ -12,6 +13,8 @@ import { InvoiceService } from '../../services/invoice.service';
   styleUrl: './form.component.scss'
 })
 export class FormComponent {
+  activatedroute = inject(ActivatedRoute)
+  @Input() invoice:Invoice | null = null
   options=[
     {value:1,name:"Net 1 Day"},
     {value:7,name:"Net 7 Day"},
@@ -25,7 +28,8 @@ export class FormComponent {
  invoiceservice = inject(InvoiceService)
 
   constructor(){
-      this.form = this.fb.group({
+      if(this.invoice == null){
+        this.form = this.fb.group({
         createdAt:['2021-8-21',[Validators.required]],
         description:['Graphic Design Services',[Validators.required,Validators.minLength(3)]],
         paymentTerms:[this.options[3].value,[Validators.required]],
@@ -53,6 +57,37 @@ export class FormComponent {
         })
         ])
            })
+      }
+      else{
+        this.form = this.fb.group({
+        createdAt:[this.invoice.createdAt,[Validators.required]],
+        description:[this.invoice.description,[Validators.required,Validators.minLength(3)]],
+        paymentTerms:[this.invoice.paymentDue,[Validators.required]],
+        clientName:[this.invoice.clientName,[Validators.required,Validators.minLength(3)]],
+        status:[this.invoice.status],
+        clientEmail:[this.invoice.clientEmail,[Validators.required, Validators.email]],
+        senderAddress: this.fb.group({
+          street:[this.invoice.senderAddress.street,[Validators.required,Validators.min(3)]],
+          city:[this.invoice.senderAddress.city,Validators.required],
+          postCode:[this.invoice.senderAddress.postCode,[Validators.required]],
+          country:[this.invoice.senderAddress.country,[Validators.required]]
+        }),
+        clientAddress: this.fb.group({
+          street:[this.invoice.clientAddress.street,[Validators.required,Validators.min(3)]],
+          city:[this.invoice.clientAddress.city,Validators.required],
+          postCode:[this.invoice.clientAddress.postCode,[Validators.required]],
+          country:[this.invoice.clientAddress.country,[Validators.required]]
+        }),
+        items:this.fb.array([
+          this.fb.group({
+          name:[this.invoice.items[0].name,[Validators.required]],
+          quantity:[this.invoice.items[0].quantity,[Validators.required]],
+          price:[this.invoice.items[0].price,[Validators.required]],
+          total: [{ value: this.invoice.items[0].total, disabled: true }, [Validators.required]]
+        })
+        ])
+           })
+      }
       this.setupValueChangeListeners();
     }
 
@@ -104,6 +139,10 @@ export class FormComponent {
   routeTo(location:string=''){
     this.route.navigate([location])
   }
+
+  getId(){
+
+  }
    
     saveAsDraft(){
       this.form.get('status')?.setValue(EStatus.draft);
@@ -123,12 +162,22 @@ export class FormComponent {
       const paymentDue = new Date(Date.parse(newformdata.createdAt))
       paymentDue.setDate(paymentDue.getDate()+ newformdata.paymentTerms)
       newformdata.paymentDue = paymentDue.toISOString().slice(0, 10)
-     console.log(newformdata)
-
     if(this.form.valid){
       this.invoiceservice.addInvoiceData(newformdata)
       this.routeTo()
     }
     
+  }
+  saveChanges(){
+     const newformdata = {...this.form.getRawValue()}
+      newformdata.id = this.invoice?.id
+      const paymentDue = new Date(Date.parse(newformdata.createdAt))
+      paymentDue.setDate(paymentDue.getDate()+ newformdata.paymentTerms)
+      newformdata.paymentDue = paymentDue.toISOString().slice(0, 10)
+     console.log(newformdata)
+    if(this.form.valid && this.invoice){
+      this.invoiceservice.editInvoice(this.invoice.id,newformdata)
+      this.route.navigate([''])
+    }
   }
 }

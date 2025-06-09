@@ -6,6 +6,7 @@ import { InvoicedetailsComponent } from './components/invoicedetails/invoicedeta
 import { FormComponent } from './components/form/form.component';
 import { NewformComponent } from './components/newform/newform.component';
 import { AppComponent } from './app.component';
+import { EditformComponent } from './components/editform/editform.component';
 
 export const routes: Routes = [
     {
@@ -23,8 +24,13 @@ export const routes: Routes = [
        {
         path:':id',
         title: "Invoice Details",
-        component: InvoicedetailsComponent
+        component: InvoicedetailsComponent,
     },
+    {
+        path:':id/edit',
+        title: 'Edit Invoice',
+        component: EditformComponent,
+       }
     ]
     },
    

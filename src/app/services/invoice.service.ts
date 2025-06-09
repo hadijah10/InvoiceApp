@@ -58,6 +58,14 @@ export class InvoiceService {
     this.saveInvoicesToStorage(updatedInvoices)
   }
 
+  editInvoice(id:string | null,newdata:Invoice){
+    const invoices = this.getInvoicesFromStorage()
+    const updatedInvoices = invoices.map(data => data.id===id? {...data,...newdata,id:data.id}: data)
+    console.log(updatedInvoices)
+    this.clearInvoices();
+    this.saveInvoicesToStorage(updatedInvoices)
+  }
+
   addInvoiceData(data:Invoice){
     const newdata = [...this.getInvoicesFromStorage(),data]
     this.saveInvoicesToStorage(newdata)
