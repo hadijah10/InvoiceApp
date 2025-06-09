@@ -3,6 +3,7 @@ import { ReactiveFormsModule,Validators,FormBuilder,FormArray,FormControl,FormGr
 import { CommonModule } from '@angular/common';
 import { EStatus } from '../../../model/interfaces/data';
 import { Router,RouterLink } from '@angular/router';
+import { InvoiceService } from '../../services/invoice.service';
 
 @Component({
   selector: 'app-form',
@@ -15,19 +16,20 @@ export class FormComponent {
     {value:1,name:"Net 1 Day"},
     {value:7,name:"Net 7 Day"},
     {value:14,name:"Net 14 Day"},
-    {value:3,name:"Net 30 Day"},
+    {value:30,name:"Net 30 Day"},
   ]
   form!:FormGroup
   fb = inject(FormBuilder)
   route=inject(Router)
   isNewform=input<boolean>()
- 
+ invoiceservice = inject(InvoiceService)
+
   constructor(){
       this.form = this.fb.group({
-        createdAt:['20 Aug 2021',[Validators.required]],
-        description:['Graphic Design',[Validators.required]],
+        createdAt:['2021-8-21',[Validators.required]],
+        description:['Graphic Design Services',[Validators.required,Validators.minLength(3)]],
         paymentTerms:[this.options[3].value,[Validators.required]],
-        clientName:['Alex Grim',[Validators.required]],
+        clientName:['Alex Grim',[Validators.required,Validators.minLength(3)]],
         status:[EStatus.pending],
         clientEmail:['alexgrim@gmail.com',[Validators.required, Validators.email]],
         senderAddress: this.fb.group({
@@ -81,7 +83,6 @@ export class FormComponent {
     this.itemFormArray.controls.forEach((itemGroup, index: number) => {
       const quantityCtrl = itemGroup.get('quantity');
       const priceCtrl = itemGroup.get('price');
-
       quantityCtrl!.valueChanges.subscribe(() => this.updateItemTotal(index));
       priceCtrl!.valueChanges.subscribe(() => this.updateItemTotal(index));
     });
@@ -105,17 +106,28 @@ export class FormComponent {
   }
    
     saveAsDraft(){
+      this.form.get('status')?.setValue(EStatus.draft);
+      const newformdata = {...this.form.getRawValue()}
+      newformdata.id = Date.now()
+      const paymentDue = new Date(Date.parse(newformdata.createdAt))
+      paymentDue.setDate(paymentDue.getDate()+ newformdata.paymentTerms)
+      newformdata.paymentDue = paymentDue.toISOString().slice(0, 10)
       if(this.form.valid){
-          this.form.get('status')?.setValue(EStatus.draft);
-          this.route
+          this.invoiceservice.addInvoiceData(newformdata)
+          this.routeTo()
       }
     }
      onSubmit(){
       const newformdata = {...this.form.getRawValue()}
       newformdata.id = Date.now()
+      const paymentDue = new Date(Date.parse(newformdata.createdAt))
+      paymentDue.setDate(paymentDue.getDate()+ newformdata.paymentTerms)
+      newformdata.paymentDue = paymentDue.toISOString().slice(0, 10)
      console.log(newformdata)
+
     if(this.form.valid){
-      
+      this.invoiceservice.addInvoiceData(newformdata)
+      this.routeTo()
     }
     
   }

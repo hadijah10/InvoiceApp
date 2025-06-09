@@ -48,7 +48,7 @@ export class InvoiceService {
 
    deleteInvoiceFromStorage(id:string | null): void{
      const invoices = this.getInvoicesFromStorage();
-    const updated = invoices.filter(invoice => invoice.id !== id);
+    const updated = invoices.filter(invoice => invoice.id != id);
     this.saveInvoicesToStorage(updated);
   }
 
@@ -58,6 +58,10 @@ export class InvoiceService {
     this.saveInvoicesToStorage(updatedInvoices)
   }
 
+  addInvoiceData(data:Invoice){
+    const newdata = [...this.getInvoicesFromStorage(),data]
+    this.saveInvoicesToStorage(newdata)
+  }
 
   clearInvoices(): void {
     localStorage.removeItem(this.storageKey);
