@@ -3,10 +3,11 @@ import { Invoice } from '../../../model/interfaces/data';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { ActivatedRoute, Router,RouterLink } from '@angular/router';
 import { InvoiceService } from '../../services/invoice.service';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-invoicedetails',
-  imports: [TitleCasePipe,RouterLink,CommonModule],
+  imports: [TitleCasePipe,RouterLink,CommonModule,RouterOutlet],
   templateUrl: './invoicedetails.component.html',
   styleUrl: './invoicedetails.component.scss'
 })

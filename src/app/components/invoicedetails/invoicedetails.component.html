@@ -18,7 +18,7 @@
             </div>
             </div>
             <div class="buttons one">
-                <a routerLink="/invoices">
+                <a routerLink="edit">
                     <button class="edit" >Edit</button>
                 </a>
             <a (click)="toggleDelete()">
@@ -32,7 +32,7 @@
         </section>
 
         <div class="buttons two">
-            <a routerLink="/invoices">
+            <a routerLink="edit">
                 <button class="edit" >Edit</button>
             </a>
         <a (click)="toggleDelete()">
@@ -42,6 +42,7 @@
             <button class="markpaid"> Mark As Paid</button>
         </a>
         </div>
+        <router-outlet name="edit"></router-outlet>
     </div>
 @if(showDelete){
     <div class="deletemodal">

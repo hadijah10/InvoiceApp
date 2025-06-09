@@ -1,139 +1,252 @@
 <section class="form-entry">
-     <a routerLink="/invoices" class="goback">
-                <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M6.342.886L2.114 5.114l4.228 4.228" stroke="#9277FF" stroke-width="2" fill="none" fill-rule="evenodd"/></svg>
-                <p class="back">Go back</p>
-            </a>
-    <form [formGroup]="form" (ngSubmit) ="onSubmit()">
-      <!-- @if(isNewform == true){
-        <h1>New Invoice</h1>
-      }
-      @else {
-        <h1> Edit {{invoice.id}}</h1>
-      } -->
-    <h1>New Invoice</h1>
-  <section formGroupName="senderAddress" class="billTo">
-    <h3>Bill To</h3>
-   <div>
-     <label for="streetaddress">StreetAdrress</label>
-  <input type="text" id="streetaddress" placeholder="name" formControlName="street">
-   </div>
-    <div class="location">
-     <div class="city">
-        <label for="city">City</label>
-        <input type="text" name="" id="city" placeholder="Streetname" formControlName="city">
-     </div>
-     <div class="postcode">
-       <label for="postal-code">PostCode</label>
-      <input type="text" placeholder="address" formControlName="postalCode">
-     </div>
-     <div class="country">
-        <label for="scountry">Country</label>
-      <input  placeholder="country" id="scountry" formControlName="country">
-     </div>
-    </div>
-  </section>
-  <section class="billFrom">
-    <h3>Bill From</h3>
-      <div>
-    <label for="cname">Client's Name</label>
-    <input type="text" formControlName="clientName">
-  </div>
-  <div>
-    <label for="cemial">Client's Email</label>
-    <input type="text" formControlName="clientEmail" 
-    [ngClass]="{
-      'is-invalid': form.get('clientEmail')?.invalid && form.get('ClientEmail')?.touched}"
-    >
-  </div>
-  <section formGroupName="clientAddress" class="clientaddress">
-    <div class="clientstreetadd">
-        <label for="sstreetaddress">StreetAdrress</label>
-        <input type="text" id="streetaddress" placeholder="name" formControlName="street">
-    </div>
-    <div class="adddetails">
-      <div>
-        <label for="city">City</label>
-      <input type="text" name="" id="city" placeholder="Streetname" formControlName="city">
-      </div>
-      <div class="postdetails">
-        <div>
-         <label for="postal-code">PostCode</label>
-        <input type="text" placeholder="address" formControlName="postalCode">
-      </div>
-      <div>
-         <label for="scountry">Country</label>
-        <input  placeholder="country" id="scountry" formControlName="country">
-      </div>
-      </div>
-    </div>
-  </section>
-  <div class="datenterms">
-    <div>
-      <label for="invoicedate">Invoice Date</label>
-      <input type="date" id="invoicedate" formControlName="createdAt">
-    </div>
-    <div>
-      <label for="paymentterms">Payment Terms</label>
-      <!-- <input type="text" id="paymentterms" formControlName="paymentTerms"> -->
-      <select name="paymenterm" id="paymenterm" formControlName="paymentTerms">
-        @for(option of options;track $index){
-           <option [value]="option.value">{{option.name}}</option>
-        }
-      </select>
-    </div>
-  </div>
-  <div class="description">
-    <label for="projectDescription">Project Description</label>
-    <input type="text" id="projectDescription" placeholder="project description" formControlName="description">
-  </div>
-  <section formArrayName="items">
-    <div class="itemsclass">
-      <label for="itemname">Item Name</label>
-      <label for="itemquant">Qty.</label>
-       <label for="itemprice">Price</label>
-       <label for="itemprice">Total</label>
-    </div>
-    @for (kin of itemFormArray.controls; track $index; let i=$index){
-      <div class="single-item" [formGroupName]="i">
-        <div class="itemname">
-          <input type="text" id="itemname" formControlName="name" placeholder="item name"/>
-        </div>
-        <div class="itemquantity">
-         <input type="number" id="itemquant" placeholder="quantity" formControlName="quantity">
-        </div>
-        <div class="itemprice">
-          <input type="number" id="itemprice" placeholder="price" formControlName="price">
-        </div> 
-         <div class="total">
-           <input formControlName="total" placeholder="Total" readonly  />
-        </div> 
-          <button type="button" (click)="deleteItem($index)" class="trash">
-            <svg width="13" height="16" xmlns="http://www.w3.org/2000/svg"><path class="bin" d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z" fill="#888EB0" fill-rule="nonzero"/></svg>
-          </button>
-      </div>
+  <a routerLink="/invoices" class="goback">
+    <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M6.342.886L2.114 5.114l4.228 4.228"
+        stroke="#9277FF"
+        stroke-width="2"
+        fill="none"
+        fill-rule="evenodd"
+      />
+    </svg>
+    <p class="back">Go back</p>
+  </a>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    @if(invoice != null){
+       <h1>Edit {{ invoice.id }}</h1>
+    
+    } @else {
+      <h1>New Invoice</h1>
     }
-  </section>
-  <button (click)="addItem()" type="button" class="additem">
+    <section formGroupName="senderAddress" class="billTo">
+      <h3>Bill To</h3>
+      <div>
+        <label for="streetaddress">StreetAdrress</label>
+        <input
+          type="text"
+          id="streetaddress"
+          placeholder="name"
+          formControlName="street"
+        />
+      </div>
+      <div class="location">
+        <div class="city">
+          <label for="city">City</label>
+          <input
+            type="text"
+            name=""
+            id="city"
+            placeholder="Streetname"
+            formControlName="city"
+          />
+        </div>
+        <div class="postcode">
+          <label for="postal-code">PostCode</label>
+          <input
+            type="text"
+            placeholder="address"
+            formControlName="postalCode"
+          />
+        </div>
+        <div class="country">
+          <label for="scountry">Country</label>
+          <input
+            placeholder="country"
+            id="scountry"
+            formControlName="country"
+          />
+        </div>
+      </div>
+    </section>
+    <section class="billFrom">
+      <h3>Bill From</h3>
+      <div>
+        <label for="cname">Client's Name</label>
+        <input type="text" formControlName="clientName" />
+      </div>
+      <div>
+        <label for="cemial">Client's Email</label>
+        <input
+          type="text"
+          formControlName="clientEmail"
+          [ngClass]="{
+            'is-invalid':
+              form.get('clientEmail')?.invalid &&
+              form.get('ClientEmail')?.touched
+          }"
+        />
+      </div>
+      <section formGroupName="clientAddress" class="clientaddress">
+        <div class="clientstreetadd">
+          <label for="sstreetaddress">StreetAdrress</label>
+          <input
+            type="text"
+            id="streetaddress"
+            placeholder="name"
+            formControlName="street"
+          />
+        </div>
+        <div class="adddetails">
+          <div>
+            <label for="city">City</label>
+            <input
+              type="text"
+              name=""
+              id="city"
+              placeholder="Streetname"
+              formControlName="city"
+            />
+          </div>
+          <div class="postdetails">
+            <div>
+              <label for="postal-code">PostCode</label>
+              <input
+                type="text"
+                placeholder="address"
+                formControlName="postalCode"
+              />
+            </div>
+            <div>
+              <label for="scountry">Country</label>
+              <input
+                placeholder="country"
+                id="scountry"
+                formControlName="country"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="datenterms">
+        <div>
+          <label for="invoicedate">Invoice Date</label>
+          <input type="date" id="invoicedate" formControlName="createdAt" />
+        </div>
+        <div>
+          <label for="paymentterms">Payment Terms</label>
+          <!-- <input type="text" id="paymentterms" formControlName="paymentTerms"> -->
+          <select
+            name="paymenterm"
+            id="paymenterm"
+            formControlName="paymentTerms"
+          >
+            @for(option of options;track $index){
+            <option [value]="option.value">{{ option.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+      <div class="description">
+        <label for="projectDescription">Project Description</label>
+        <input
+          type="text"
+          id="projectDescription"
+          placeholder="project description"
+          formControlName="description"
+        />
+      </div>
+      <section formArrayName="items">
+        <div class="itemsclass">
+          <label for="itemname">Item Name</label>
+          <label for="itemquant">Qty.</label>
+          <label for="itemprice">Price</label>
+          <label for="itemprice">Total</label>
+        </div>
+        @for (kin of itemFormArray.controls; track $index; let i=$index){
+        <div class="single-item" [formGroupName]="i">
+          <div class="itemname">
+            <input
+              type="text"
+              id="itemname"
+              formControlName="name"
+              placeholder="item name"
+            />
+          </div>
+          <div class="itemquantity">
+            <input
+              type="number"
+              id="itemquant"
+              placeholder="quantity"
+              formControlName="quantity"
+            />
+          </div>
+          <div class="itemprice">
+            <input
+              type="number"
+              id="itemprice"
+              placeholder="price"
+              formControlName="price"
+            />
+          </div>
+          <div class="total">
+            <input formControlName="total" placeholder="Total" readonly />
+          </div>
+          <button type="button" (click)="deleteItem($index)" class="trash">
+            <svg width="13" height="16" xmlns="http://www.w3.org/2000/svg">
+              <path
+                class="bin"
+                d="M11.583 3.556v10.666c0 .982-.795 1.778-1.777 1.778H2.694a1.777 1.777 0 01-1.777-1.778V3.556h10.666zM8.473 0l.888.889h3.111v1.778H.028V.889h3.11L4.029 0h4.444z"
+                fill="#888EB0"
+                fill-rule="nonzero"
+              />
+            </svg>
+          </button>
+        </div>
+        }
+      </section>
+      <button (click)="addItem()" type="button" class="additem">
+        <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
+          <path
+            class="add"
+            d="M6.313 10.023v-3.71h3.71v-2.58h-3.71V.023h-2.58v3.71H.023v2.58h3.71v3.71z"
+            fill-rule="nonzero"
+          />
+        </svg>
 
-       <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg"><path class="add" d="M6.313 10.023v-3.71h3.71v-2.58h-3.71V.023h-2.58v3.71H.023v2.58h3.71v3.71z"  fill-rule="nonzero"/></svg>
- 
-    Additem</button>
-   <div class="warningdiv">
-   <p class="warning">{{form.invalid ? '- All fields must be added':''}}</p>
-    <p class="warning">{{form.invalid ? '- Items must be added': ''}}</p>
+        Additem
+      </button>
+      <div class="warningdiv">
+        <p class="warning">
+          {{ form.invalid ? "- All fields must be added" : "" }}
+        </p>
+        <p class="warning">{{ form.invalid ? "- Items must be added" : "" }}</p>
+      </div>
+    </section>
+    <div class="controlbuttons">
+      @if(invoice != null){
+      <div class="save manage">
+        <a routerLink="/">
+          <button
+            type="button"
+            class="discard"
+          >
+            Cancel
+          </button>
+        </a>
+        <button type="submit" [disabled]="form.invalid" type="button" class="savesend" (click)="saveChanges()">
+          Save Changes
+        </button>
+      </div>
+      } @else {
+      <div>
+        <a routerLink="/">
+          <button type="button" class="discard">Discard</button>
+        </a>
+      </div>
+      <div class="save">
+        <button
+          type="button"
+          class="draftbtn"
+          [disabled]="form.invalid"
+          (click)="saveAsDraft()"
+        >
+          Save as Draft
+        </button>
+        <button type="submit" [disabled]="form.invalid" class="savesend">
+          Save & Send
+        </button>
+      </div>
+      }
     </div>
-  </section>
-  <div class="controlbuttons">
-    <div>
-      <a routerLink="/">
-      <button type="button" class="discard">Discard</button>
-    </a>
-    </div>
-    <div class="save">
-        <button type="button" class="draftbtn" [disabled]="form.invalid" (click)="saveAsDraft()">Save as Draft</button>
-     <button type="submit" [disabled]="form.invalid" class="savesend">Save & Send</button>
-    </div>
-  </div>
- </form>
-
+  </form>
 </section>
