@@ -8,6 +8,9 @@
 a{
     text-decoration: none;
 }
+h1{
+    margin: 0;
+}
 
      .status.pending{
          background-color: color.adjust($pending,$lightness:45%) ;
@@ -42,6 +45,7 @@ a{
     display: grid;
     margin-top: 50px;
     gap:28px;
+
     .back{
     @include h32;
 }
@@ -70,12 +74,6 @@ a{
     gap:1rem;
     align-items: center;
 }
-// .status{
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-between;
-//     align-items: center;
-// }
 .buttons{
     display:flex;
     gap:0.5rem;
@@ -83,6 +81,31 @@ a{
 .buttons.two{
     display: none;
 }
+
+}
+.deletemodal{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    display: grid;
+    place-content: center;
+    .modalContent{
+        display: flex;
+        flex-direction: column;
+        width:min(95%,480px);
+        gap:0.6rem;
+        padding:48px;
+        background-color: $white;
+         overflow: auto;
+        .buttongroup{
+            display: flex;
+            justify-content: end;
+            gap:1rem;
+        }
+    }
 }
 .invend{
         @include flex(row,20px);
@@ -143,9 +166,7 @@ button{
         background-color: $light-dark-violet;
     }
 }
-.deletemodal{
-    width:480px;
-}
+
 
     @media(max-width:950px){
    .inv-wrapper{
@@ -157,6 +178,9 @@ button{
 .inv-wrapper{
     margin-top:100px;
       width:90vw;
+}
+.deletemodal{
+    margin-top: 80px;
 }
 }
 

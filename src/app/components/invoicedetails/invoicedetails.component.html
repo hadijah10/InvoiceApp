@@ -45,15 +45,17 @@
     </div>
 @if(showDelete){
     <div class="deletemodal">
-    <section>
+    <section class="modalContent">
         <h1>Confirm Deletion</h1>
         <p>Are you sure you want to delete invoice #XM9141? This action cannot be undone.</p>
-        <a >
+        <section class="buttongroup">
+            <a >
                 <button class="edit" (click)="toggleDelete()">Cancel</button>
             </a>
           <a >
             <button class="delete" (click)="delete(id)">Delete</button>
         </a>
+        </section>
     </section>
 </div>
 }

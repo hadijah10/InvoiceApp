@@ -40,7 +40,10 @@
   </div>
   <div>
     <label for="cemial">Client's Email</label>
-    <input type="text" formControlName="clientEmail">
+    <input type="text" formControlName="clientEmail" 
+    [ngClass]="{
+      'is-invalid': form.get('clientEmail')?.invalid && form.get('ClientEmail')?.touched}"
+    >
   </div>
   <section formGroupName="clientAddress" class="clientaddress">
     <div class="clientstreetadd">

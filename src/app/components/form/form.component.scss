@@ -5,8 +5,8 @@
     gap:$gap;
 }
 
-input.ng-invalid.ng-touched{
-    border-color: $delete-bg;
+input.is-invalid{
+    border: 1px solid $delete-bg;
 }
 
 .form-entry{
