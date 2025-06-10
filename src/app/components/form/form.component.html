@@ -13,7 +13,7 @@
   </a>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     @if(invoice != null){
-       <h1>Edit {{ invoice.id }}</h1>
+       <h1>Edit  <span class="hash">#</span>{{ invoice.id }}</h1>
     
     } @else {
       <h1>New Invoice</h1>

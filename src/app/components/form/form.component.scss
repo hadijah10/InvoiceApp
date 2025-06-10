@@ -22,6 +22,9 @@ input.is-invalid{
       .back{
     @include h32;
 }
+.hash{
+    color: $bright_voilet;
+}
 .goback{
     display: none;
     cursor: pointer;

@@ -33,13 +33,6 @@ export const routes: Routes = [
        }
     ]
     },
-   
-    {
-        path:'form',
-        title: "404 Page",
-        component: FormComponent
-    }
-    ,
     {
         path:'**',
         title: "404 Page",
